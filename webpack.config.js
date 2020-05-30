@@ -4,10 +4,13 @@ const CheckerPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 require("dotenv").config();
 
 const resolve = path.resolve.bind(path, __dirname);
+
+const dotenvPlugin = new Dotenv();
 
 const pathsPlugin = new TsconfigPathsPlugin({
   configFile: "./tsconfig.json"
@@ -100,7 +103,12 @@ module.exports = (env, argv) => {
       splitChunks: false
     },
     output,
-    plugins: [checkerPlugin, environmentPlugin, htmlWebpackPlugin],
+    plugins: [
+      checkerPlugin,
+      environmentPlugin,
+      htmlWebpackPlugin,
+      dotenvPlugin
+    ],
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       plugins: [pathsPlugin]
