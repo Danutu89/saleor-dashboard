@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
   }
 
   if (!devMode) {
-    const publicPath = process.env.STATIC_URL || "/";
+    const publicPath = process.env.STATIC_URL || "/admin";
     output = {
       chunkFilename: "[name].[chunkhash].js",
       filename: "[name].[chunkhash].js",
@@ -58,7 +58,7 @@ module.exports = (env, argv) => {
       chunkFilename: "[name].js",
       filename: "[name].js",
       path: resolve(dashboardBuildPath),
-      publicPath: "/"
+      publicPath: "/admin"
     };
     fileLoaderPath = "file-loader?name=[name].[ext]";
   }
